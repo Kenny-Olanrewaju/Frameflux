@@ -398,4 +398,8 @@ button{
     height: 40vh;
     margin-left: 0;
 }
+
+.our-categories{
+    padding: 3rem;
+}
 }
