@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FrameFlux — 4K wallpapers, free to download</title>
+<meta name="description" content="A curated gallery of ultra-HD wallpapers for phone and desktop. Browse by mood, preview full size, download in one click.">
+<meta name="theme-color" content="#101326">
+
+<meta property="og:title" content="FrameFlux — 4K wallpapers, free to download">
+<meta property="og:description" content="Curated ultra-HD wallpapers for every screen. Preview, save, download.">
+<meta property="og:type" content="website">
+
+<link rel="icon" href="logo-frameflux.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#gallery">Skip to the gallery</a>
+
+<!-- ============ Header ============ -->
+<header class="site-header" id="site-header">
+  <div class="shell header-inner">
+    <a href="#top" class="brand" aria-label="FrameFlux — home">
+      <img src="logo-frameflux.svg" alt="FrameFlux" width="160" height="36">
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#gallery">Gallery</a>
+      <a href="#categories">Categories</a>
+      <a href="#story">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="saved-pill" id="saved-jump" type="button">
+        Saved <span class="saved-count" id="saved-count">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" type="button" aria-controls="nav" aria-expanded="false">
+        <span class="hamburger-bars" aria-hidden="true"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ Hero ============ -->
+<section class="hero">
+  <svg class="hero-bg" viewBox="0 0 1440 820" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="ff-edge" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%"  stop-color="#00D4FF"/>
+        <stop offset="55%" stop-color="#6F4CFF"/>
+        <stop offset="100%" stop-color="#FF6FD8"/>
+      </linearGradient>
+
+      <linearGradient id="ff-fill" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#6F4CFF" stop-opacity=".30"/>
+        <stop offset="100%" stop-color="#00D4FF" stop-opacity=".04"/>
+      </linearGradient>
+
+      <radialGradient id="ff-aurora-a" cx="50%" cy="50%">
+        <stop offset="0%" stop-color="#00D4FF" stop-opacity=".55"/>
+        <stop offset="100%" stop-color="#00D4FF" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="ff-aurora-b" cx="50%" cy="50%">
+        <stop offset="0%" stop-color="#6F4CFF" stop-opacity=".60"/>
+        <stop offset="100%" stop-color="#6F4CFF" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="ff-aurora-c" cx="50%" cy="50%">
+        <stop offset="0%" stop-color="#FF4FA3" stop-opacity=".38"/>
+        <stop offset="100%" stop-color="#FF4FA3" stop-opacity="0"/>
+      </radialGradient>
+
+      <pattern id="ff-dots" width="26" height="26" patternUnits="userSpaceOnUse">
+        <circle cx="1.5" cy="1.5" r="1.1" fill="#ffffff" fill-opacity=".14"/>
+      </pattern>
+
+      <linearGradient id="ff-dot-mask" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#fff" stop-opacity=".9"/>
+        <stop offset="70%" stop-color="#fff" stop-opacity="0"/>
+      </linearGradient>
+      <mask id="ff-mask-dots">
+        <rect width="1440" height="820" fill="url(#ff-dot-mask)"/>
+      </mask>
+
+      <filter id="ff-soft" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur stdDeviation="90"/>
+      </filter>
+    </defs>
+
+    <rect width="1440" height="820" fill="#101326"/>
+
+    <!-- aurora wash -->
+    <g filter="url(#ff-soft)" class="hero-aurora">
+      <ellipse cx="1080" cy="230" rx="340" ry="250" fill="url(#ff-aurora-b)"/>
+      <ellipse cx="1290" cy="560" rx="300" ry="230" fill="url(#ff-aurora-a)"/>
+      <ellipse cx="820"  cy="720" rx="320" ry="200" fill="url(#ff-aurora-c)"/>
+      <ellipse cx="180"  cy="120" rx="280" ry="200" fill="url(#ff-aurora-a)"/>
+    </g>
+
+    <rect width="1440" height="820" fill="url(#ff-dots)" mask="url(#ff-mask-dots)"/>
+
+    <!-- frame cluster: the logo's aperture motif, exploded -->
+    <g class="hero-frames" transform="translate(1040 400)">
+      <g class="frame-spin">
+        <rect x="-300" y="-300" width="600" height="600" rx="48" fill="none" stroke="url(#ff-edge)" stroke-opacity=".28" stroke-width="1.5" transform="rotate(8)"/>
+        <rect x="-235" y="-235" width="470" height="470" rx="40" fill="url(#ff-fill)" stroke="url(#ff-edge)" stroke-opacity=".55" stroke-width="2" transform="rotate(-12)"/>
+        <rect x="-170" y="-170" width="340" height="340" rx="30" fill="none" stroke="url(#ff-edge)" stroke-opacity=".9" stroke-width="2.5" transform="rotate(22)"/>
+        <rect x="-96"  y="-96"  width="192" height="192" rx="20" fill="#ffffff" fill-opacity=".05" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.5" transform="rotate(-30)"/>
+        <circle cx="0" cy="0" r="6" fill="#00D4FF"/>
+      </g>
+      <g class="frame-drift" opacity=".7">
+        <rect x="-420" y="-40" width="120" height="120" rx="16" fill="none" stroke="#00D4FF" stroke-opacity=".5" stroke-width="1.5" transform="rotate(-14 -360 20)"/>
+        <rect x="250" y="-330" width="90" height="90" rx="14" fill="none" stroke="#FF6FD8" stroke-opacity=".45" stroke-width="1.5" transform="rotate(18 295 -285)"/>
+        <rect x="200" y="250" width="150" height="150" rx="20" fill="none" stroke="#6F4CFF" stroke-opacity=".5" stroke-width="1.5" transform="rotate(-8 275 325)"/>
+      </g>
+    </g>
+
+    <!-- scrim so the headline always wins -->
+    <rect width="1440" height="820" fill="url(#ff-scrim)"/>
+    <defs>
+      <linearGradient id="ff-scrim" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%"  stop-color="#101326" stop-opacity=".92"/>
+        <stop offset="52%" stop-color="#101326" stop-opacity=".45"/>
+        <stop offset="100%" stop-color="#101326" stop-opacity=".1"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <div class="shell hero-inner">
+    <p class="hero-kicker">Free · Ultra HD · No sign-up</p>
+    <h1 class="hero-title">Wallpapers worth<br>looking at twice.</h1>
+    <p class="hero-lede">A small, hand-picked gallery of 4K images for your phone, laptop and desktop. Find one you like, press download, done.</p>
+
+    <div class="hero-search">
+      <label class="sr-only" for="hero-search-input">Search wallpapers</label>
+      <input id="hero-search-input" type="search" placeholder="Search — neon, sunset, anime, coastline…" autocomplete="off">
+      <button class="btn btn-primary" id="hero-search-go" type="button">Search</button>
+    </div>
+
+    <div class="hero-meta">
+      <span><strong id="stat-count">0</strong> wallpapers</span>
+      <span><strong id="stat-cats">0</strong> collections</span>
+      <span>Updated monthly</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Gallery ============ -->
+<section class="gallery-section" id="gallery">
+  <div class="shell">
+    <div class="section-head">
+      <h2>The gallery</h2>
+      <p>Hover or tap an image to preview it full size. Every download is the original file.</p>
+    </div>
+
+    <div class="controls" id="categories">
+      <div class="filters" id="filters" role="group" aria-label="Filter by collection"></div>
+      <div class="control-search">
+        <label class="sr-only" for="grid-search">Filter the gallery</label>
+        <input id="grid-search" type="search" placeholder="Filter by name or mood" autocomplete="off">
+      </div>
+    </div>
+
+    <p class="result-line" id="result-line" role="status"></p>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="empty" id="empty" hidden>
+      <p>Nothing matches that search.</p>
+      <button class="btn btn-ghost" id="reset-filters" type="button">Show everything</button>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="shell story-inner">
+    <h2>Every image here was chosen by a person, not a crawler.</h2>
+    <div class="story-cols">
+      <p>FrameFlux is a small collection built around one rule: if an image doesn't change the feel of a screen, it doesn't get in. No stock filler, no duplicated colour grades, no fifty variants of the same sunset.</p>
+      <p>Files are served at their original resolution, so a wallpaper that looks sharp in the preview stays sharp on a 27-inch display. Save the ones you like — the heart on each image keeps them in your Saved list on this device.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Contact ============ -->
+<section class="contact" id="contact">
+  <div class="shell contact-inner">
+    <div>
+      <h2>Got an image that belongs here?</h2>
+      <p>Send a link and we'll take a look. Requests for a collection we don't cover yet are welcome too.</p>
+    </div>
+    <a class="btn btn-primary" href="mailto:kennycool202421@gmail.com">Contact the gallery</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell footer-inner">
+    <img src="logo-frameflux.svg" alt="FrameFlux" width="140" height="32">
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="#gallery">Gallery</a>
+      <a href="#story">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <p>© <span id="year">2026</span> FrameFlux. Images are the property of their respective creators.</p>
+  </div>
+</footer>
+
+<!-- ============ Lightbox ============ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Wallpaper preview" hidden>
+  <button class="lb-close" id="lb-close" type="button" aria-label="Close preview">&times;</button>
+  <button class="lb-nav lb-prev" id="lb-prev" type="button" aria-label="Previous wallpaper">&#8249;</button>
+  <button class="lb-nav lb-next" id="lb-next" type="button" aria-label="Next wallpaper">&#8250;</button>
+
+  <figure class="lb-figure">
+    <img id="lb-image" src="" alt="">
+    <figcaption class="lb-caption">
+      <div class="lb-text">
+        <h3 id="lb-title"></h3>
+        <p id="lb-desc"></p>
+      </div>
+      <div class="lb-actions">
+        <button class="btn btn-ghost" id="lb-save" type="button">Save</button>
+        <button class="btn btn-primary" id="lb-download" type="button">Download</button>
+      </div>
+    </figcaption>
+  </figure>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js" defer></script>
+</body>
+</html>
