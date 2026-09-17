@@ -679,3 +679,30 @@ body.is-locked{ overflow: hidden; }
     transition-duration: .001ms !important;
   }
 }
+
+/* Resolution indicator — grid tile badge and lightbox line */
+.tile-res{
+  position: absolute;
+  top: .6rem;
+  left: .6rem;
+  background: var(--grad);
+  color: var(--ink-deep);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+  padding: .25rem .55rem;
+  border-radius: 999px;
+}
+
+.lb-res{
+  display: inline-block;
+  margin-top: .6rem;
+  background: var(--grad);
+  color: var(--ink-deep);
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+  padding: .25rem .65rem;
+  border-radius: 999px;
+}
+.lb-res:empty{ display: none; margin-top: 0; padding: 0; }

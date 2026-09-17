@@ -1,9 +1,9 @@
 /* ===========================================================
-   FrameFlux — gallery logic
-   ---------------------------------------------------------
-   Everything on the page is built from the WALLPAPERS list
-   below. To add an image: drop the file in IMAGE_DIR and add
-   one entry. Nothing else needs editing.
+  FrameFlux — gallery logic
+  ---------------------------------------------------------
+  Everything on the page is built from the WALLPAPERS list
+  below. To add an image: drop the file in IMAGE_DIR and add
+  one entry. Nothing else needs editing.
    =========================================================== */
 
 /* Folder the image files live in, relative to index.html.
@@ -68,7 +68,7 @@ const WALLPAPERS = [
 
   /* ---------- Anime ---------- */
   { file: "https://i.pinimg.com/736x/95/9d/b7/959db7d89792a53ae0414abaf7a2f3b4.jpg", title: "Demon Slayer", category: "Anime",
-    desc: "A young hero against a setting sun and a city that goes on forever." },
+    desc: "A fighter's glare cutting through a wall of rising flame." },
   { file: "https://i.pinimg.com/736x/1e/c9/f8/1ec9f8f658cedc6f501e10aa25f4d8a2.jpg", title: "Good Company", category: "Anime",
     desc: "Bright eyes and a grin — the wallpaper equivalent of a good mood." },
   { file: "https://i.pinimg.com/736x/49/95/d2/4995d2bf2bcdfe547af56755b5657412.jpg", title: "Charge", category: "Anime",
@@ -169,7 +169,16 @@ function triggerSave(href, filename){
   link.remove();
 }
 
+/* FIX: nothing stopped a fast double-click (very common muscle memory
+   on a download icon) from firing two independent downloads for the
+   same image before the first one finished — this tracks which files
+   are mid-download and ignores a repeat click until it's done. */
+const downloadsInFlight = new Set();
+
 async function downloadWallpaper(item){
+  if(downloadsInFlight.has(item.file)) return;
+  downloadsInFlight.add(item.file);
+
   const url = srcFor(item);
   const filename = downloadName(item);
 
@@ -182,8 +191,17 @@ async function downloadWallpaper(item){
     setTimeout(() => URL.revokeObjectURL(objectUrl), 10000);
     toast(`Saved ${filename}`);
   }catch(err){
-    triggerSave(url, filename);
-    toast("Opened the full image — long-press or right-click to save it.");
+    /* CHANGED: this used to click a link with no target, which on a
+       cross-origin image (anything hosted on i.pinimg.com) navigated the
+       whole tab away to the raw file — nothing came "back" to FrameFlux.
+       Now it opens the same in-page preview popup used for clicking a
+       tile, so the image shows up right here and the person can
+       long-press / right-click it without ever leaving the page. */
+    const index = visible.indexOf(item);
+    if(index !== -1 && (lightbox.hidden || lbIndex !== index)) openLightbox(index);
+    toast("Long-press or right-click the image to save it.");
+  }finally{
+    downloadsInFlight.delete(item.file);
   }
 }
 
@@ -238,6 +256,7 @@ function buildTile(item, index){
 
   tile.innerHTML = `
     <img src="${srcFor(item)}" alt="${item.title} — ${item.category} wallpaper" loading="lazy" decoding="async">
+    <span class="tile-res" hidden></span>
     <div class="tile-overlay">
       <span class="tile-name">${item.title}<span class="tile-cat">${item.category}</span></span>
       <span class="tile-buttons">
@@ -249,6 +268,17 @@ function buildTile(item, index){
     </div>`;
 
   const img = tile.querySelector("img");
+  const resBadge = tile.querySelector(".tile-res");
+
+  img.addEventListener("load", () => {
+    if(img.naturalWidth){
+      item.width = img.naturalWidth;
+      item.height = img.naturalHeight;
+      resBadge.textContent = `${item.width} × ${item.height}`;
+      resBadge.hidden = false;
+    }
+  });
+
   img.addEventListener("error", () => {
     tile.classList.add("is-broken");
     tile.querySelector(".tile-name").insertAdjacentHTML(
@@ -320,6 +350,7 @@ const lbImage  = $("#lb-image");
 const lbTitle  = $("#lb-title");
 const lbDesc   = $("#lb-desc");
 const lbSave   = $("#lb-save");
+const lbRes    = $("#lb-res");
 let lbIndex    = 0;
 let lastFocus  = null;
 
@@ -339,6 +370,15 @@ function paintLightbox(){
   lbImage.alt = `${item.title} — ${item.category} wallpaper`;
   lbTitle.textContent = item.title;
   lbDesc.textContent = item.desc;
+
+  lbRes.textContent = item.width ? `${item.width} × ${item.height}` : "";
+  if(!item.width){
+    lbImage.addEventListener("load", function onLoad(){
+      lbRes.textContent = `${lbImage.naturalWidth} × ${lbImage.naturalHeight}`;
+      lbImage.removeEventListener("load", onLoad);
+    });
+  }
+
   syncLightboxSave();
 }
 
@@ -365,6 +405,13 @@ function step(offset){
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
+
+  /* GUARD: if script.js ever ends up on the page twice (a duplicate
+     <script> tag, or this file pasted in twice by accident), this stops
+     every click handler below from being wired up a second time — which
+     is what causes one click to save/open/toast twice. */
+  if(window.__frameFluxInitialised) return;
+  window.__frameFluxInitialised = true;
 
   renderFilters();
   render();
